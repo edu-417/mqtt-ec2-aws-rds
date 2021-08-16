@@ -1,13 +1,17 @@
 from paho.mqtt import client as mqtt
-import threading, json, random
+import threading, json, random, os
 from datetime import datetime
 
-MQTT_BROKER = 'ec2-18-224-61-52.us-east-2.compute.amazonaws.com'
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MQTT_BROKER = os.environ.get('MQTT_BROKER')
 MQTT_PORT = 1883
 KEEP_ALIVE_INTERVAL = 60
 MQTT_TOPIC_SENSOR_DATA = 'SensorData'
-MQTT_USER = 'mqtt-user'
-MQTT_PASSWORD = 'mqtt'
+MQTT_USER = os.environ.get('MQTT_USER')
+MQTT_PASSWORD = os.environ.get('MQTT_PASSWORD')
 
 SENSOR_ANONYMOUS_VARIABLES_NUMBER = 8
 SENSOR_ID_FIELD = 'sensor_id'
