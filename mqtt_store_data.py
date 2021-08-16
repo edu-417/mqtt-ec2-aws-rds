@@ -5,19 +5,22 @@ from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 from paho.mqtt import client as mqtt
-import json, datetime
+import json, datetime, os
 
+from dotenv import load_dotenv
 
-MQTT_BROKER = 'ec2-18-224-61-52.us-east-2.compute.amazonaws.com'
+load_dotenv()
+
+MQTT_BROKER = os.environ.get('MQTT_BROKER')
 MQTT_PORT = 1883
 KEEP_ALIVE_INTERVAL = 60
 MQTT_TOPIC_SENSOR_DATA = 'SensorData'
-MQTT_USER = 'mqtt-user'
-MQTT_PASSWORD = 'mqtt'
+MQTT_USER = os.environ.get('MQTT_USER')
+MQTT_PASSWORD = os.environ.get('MQTT_PASSWORD')
 
-AWS_RDS_HOST = 'mqtt-db.ctk0uhjswjzz.us-east-2.rds.amazonaws.com'
-AWS_RDS_USER = 'postgres'
-AWS_RDS_PASSWORD = 'I3Q9FBUUboCY4fK3cc0Z'
+AWS_RDS_HOST = os.environ.get('AWS_RDS_HOST')
+AWS_RDS_USER = os.environ.get('AWS_RDS_USER')
+AWS_RDS_PASSWORD = os.environ.get('AWS_RDS_PASSWORD')
 AWS_RDS_DATABASE = 'mqtt_database'
 
 SENSOR_ANONYMOUS_VARIABLES_NUMBER = 8
