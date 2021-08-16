@@ -1,6 +1,5 @@
 from paho.mqtt import client as mqtt
 import threading, json, random, os
-from datetime import datetime
 
 from dotenv import load_dotenv
 
